@@ -2,6 +2,7 @@ import asyncio
 import time
 from groq import AsyncGroq
 from .config import Config
+from src.logger import logger
 
 client = AsyncGroq(api_key=Config.GROQ_API_KEY)
 
@@ -19,19 +20,20 @@ async def run_concurrent_research(topic):
     start_time = time.perf_counter()
     experts = ["Economist", "Technologist", "Ethicist"]
 
-    print(f"Launching {len(experts)} agents concurrently...")
+    logger.info(f"Launching {len(experts)} agents concurrently...")
 
     results = await asyncio.gather(*[ask_agent(expert, topic) for expert in experts]
                                     )
     end_time = time.perf_counter()
 
-    print("\n--- Consolidated Research Report---")
+    logger.info("\n--- Consolidated Research Report---")
 
     for r in results:
-        print(r)
-    print(f"\n Total time with Asyncio: {end_time - start_time:.2f} seconds")
+        logger.info(r)
+    logger.info(f"\n Total time with Asyncio: {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":
-    asyncio.run(run_concurrent_research("Nuclear Fusion"))
+     asyncio.run(run_concurrent_research("Deployed AI Engineer"))
+    
     
               
