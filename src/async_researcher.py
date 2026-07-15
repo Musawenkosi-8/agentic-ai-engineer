@@ -16,7 +16,10 @@ async def ask_agent(expert_type, topic):
     max_tokens=100)
     return f"{expert_type.upper()}: {response.choices[0].message.content}"
 
-async def run_concurrent_research(topic):
+async def run_concurrent_research(
+    topic: str,
+    perspective: str
+):
     start_time = time.perf_counter()
     experts = ["Economist", "Technologist", "Ethicist"]
 

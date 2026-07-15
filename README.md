@@ -201,6 +201,48 @@ Any changes made to the source code will automatically restart the server.
 
 
 Total time with Asyncio: 3.42 seconds
+
+## Running the Frontend
+
+This project includes a Streamlit-based user interface for interacting with the Agentic Research Assistant.
+
+### Start the Streamlit Application
+
+From the project root directory, run:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+### Expected Output
+
+After running the command, Streamlit will start a local web server and display a URL similar to:
+
+```text
+Local URL: http://localhost:8501
+```
+
+Open the URL in your browser to access the application.
+
+### Features
+
+* Chat-style research interface
+* Persistent session chat history
+* Adjustable `max_analysts` setting (1–5) from the sidebar
+* Backend status indicator
+* Logging of user research requests
+
+### Stopping the Application
+
+Press:
+
+```text
+CTRL + C
+```
+
+in the terminal to stop the Streamlit server.
+
+
 Future Improvements
 Add a synthesizer agent for final report generation
 Add memory using vector databases
