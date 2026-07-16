@@ -8,7 +8,7 @@ client = AsyncGroq(api_key=Config.GROQ_API_KEY)
 
 async def ask_agent(expert_type, topic):
     """Specialized Agent Node"""
-    print(f"{expert_type} agent is analyzing {topic}...")
+    logger.info(f"{expert_type} agent is analyzing {topic}...")
     prompt = f"As a {expert_type}, what is the main impact of {topic}?"  
     response = await client.chat.completions.create(
     model="llama-3.1-8b-instant",

@@ -126,3 +126,153 @@ Traceback (most recent call last):
     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
 ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
 2026-07-15 21:47:51,765 - src.logger - INFO - UI received input: what is Agentic Ai | max_analysts=3
+2026-07-16 10:23:59,981 - httpx - INFO - _client.py:1025 - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2026-07-16 10:24:01,176 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2026-07-16 10:24:02,209 - httpx - INFO - _client.py:1025 - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2026-07-16 10:24:34,512 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/telemetry/https%3A/api.gradio.app/gradio-initiated-analytics "HTTP/1.1 504 Gateway Timeout"
+2026-07-16 10:24:36,048 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/telemetry/https%3A/api.gradio.app/gradio-launched-telemetry "HTTP/1.1 504 Gateway Timeout"
+2026-07-16 10:27:55,151 - src.logger - INFO - gradio_app.py:7 - Gradio UI sending request for: what is an AI agent in two to three lines, what is agentic ai
+2026-07-16 10:27:55,277 - src.logger - INFO - api.py:11 - 🚀 Topic: what is an AI agent in two to three lines, what is agentic ai | Perspective: economic
+2026-07-16 10:27:55,278 - src.logger - INFO - async_researcher.py:26 - Launching 3 agents concurrently...
+2026-07-16 10:27:55,278 - src.logger - INFO - async_researcher.py:11 - Economist agent is analyzing what is an AI agent in two to three lines, what is agentic ai...
+2026-07-16 10:27:56,898 - src.logger - INFO - async_researcher.py:11 - Technologist agent is analyzing what is an AI agent in two to three lines, what is agentic ai...
+2026-07-16 10:27:56,900 - src.logger - INFO - async_researcher.py:11 - Ethicist agent is analyzing what is an AI agent in two to three lines, what is agentic ai...
+2026-07-16 10:27:58,275 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:27:58,395 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:27:58,397 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:27:58,400 - src.logger - INFO - async_researcher.py:32 - 
+--- Consolidated Research Report---
+2026-07-16 10:27:58,401 - src.logger - INFO - async_researcher.py:35 - ECONOMIST: As an economist, I'd say that the main impact of Agentic AI is its ability to act independently, making decisions that are not just driven by data, but by its own goals and motivations, potentially disrupting traditional value chains and creating new economic opportunities, but also raising concerns about accountability and job displacement. 
+
+Agentic AI refers to AI systems that not only perceive and react to their environment but also have their own goals, desires, and motivations, which drive their decision-making processes. This creates a
+2026-07-16 10:27:58,401 - src.logger - INFO - async_researcher.py:35 - TECHNOLOGIST: As a technologist, I can explain that an AI agent is a software program that perceives and responds to its environment, allowing it to make decisions and take actions autonomously. Its main impact is the ability to perform tasks independently, freeing humans from mundane responsibilities and enabling more efficient decision-making.
+
+Agentic AI, specifically, refers to the emergence of autonomous intelligent systems with goals, desires, and motivations, similar to humans, which can lead to significant advancements in areas such as:
+
+- Autonomous decision-making
+2026-07-16 10:27:58,403 - src.logger - INFO - async_researcher.py:35 - ETHICIST: As an ethicist, I'll break down the concept of Agentic AI and its impact.
+
+**What is AI Agent:** 
+An AI agent is a computer program designed to perform a specific task autonomously, making decisions based on data, rules, or learning from experiences. Their goal is to achieve a particular objective or respond to their environment in a pre-defined manner.
+
+**What is Agentic AI:** 
+Agentic AI refers to AI agents that possess a sense of autonomy, self-awareness,
+2026-07-16 10:27:58,411 - src.logger - INFO - async_researcher.py:36 - 
+ Total time with Asyncio: 3.12 seconds
+2026-07-16 10:30:40,652 - httpx - INFO - _client.py:1025 - HTTP Request: GET http://127.0.0.1:7861/gradio_api/startup-events "HTTP/1.1 200 OK"
+2026-07-16 10:30:41,238 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD http://127.0.0.1:7861/ "HTTP/1.1 200 OK"
+2026-07-16 10:30:46,085 - httpx - INFO - _client.py:1025 - HTTP Request: GET https://api.gradio.app/v3/tunnel-request "HTTP/1.1 200 OK"
+2026-07-16 10:30:47,155 - httpx - INFO - _client.py:1025 - HTTP Request: GET https://cdn-media.huggingface.co/frpc-gradio-0.3/frpc_windows_amd64.exe "HTTP/1.1 200 OK"
+2026-07-16 10:31:16,768 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/telemetry/https%3A/api.gradio.app/gradio-initiated-analytics "HTTP/1.1 504 Gateway Timeout"
+2026-07-16 10:31:42,688 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/telemetry/https%3A/api.gradio.app/gradio-launched-telemetry "HTTP/1.1 504 Gateway Timeout"
+2026-07-16 10:34:32,120 - src.logger - INFO - gradio_app.py:7 - Gradio UI sending request for: Quantum Computing
+2026-07-16 10:34:32,189 - src.logger - INFO - api.py:11 - 🚀 Topic: Quantum Computing | Perspective: economic
+2026-07-16 10:34:32,190 - src.logger - INFO - async_researcher.py:26 - Launching 3 agents concurrently...
+2026-07-16 10:34:32,191 - src.logger - INFO - async_researcher.py:11 - Economist agent is analyzing Quantum Computing...
+2026-07-16 10:34:32,593 - src.logger - INFO - async_researcher.py:11 - Technologist agent is analyzing Quantum Computing...
+2026-07-16 10:34:32,617 - src.logger - INFO - async_researcher.py:11 - Ethicist agent is analyzing Quantum Computing...
+2026-07-16 10:34:34,702 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:34:35,180 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:34:35,184 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:34:35,188 - src.logger - INFO - async_researcher.py:32 - 
+--- Consolidated Research Report---
+2026-07-16 10:34:35,193 - src.logger - INFO - async_researcher.py:35 - ECONOMIST: As an economist, the main impact of Quantum Computing is multifaceted and vast, but I'll highlight the most significant effects on various sectors. Quantum Computing has the potential to:
+
+1. **Accelerate optimization and simulation**: Quantum Computing can solve complex optimization problems exponentially faster than classical computers, leading to breakthroughs in logistics, supply chain management, and resource allocation.
+2. **Enhance financial modeling and risk analysis**: Quantum Computing can simulate complex financial systems, allowing for more accurate risk assessments, optimized
+2026-07-16 10:34:35,193 - src.logger - INFO - async_researcher.py:35 - TECHNOLOGIST: As a technologist, the main impact of Quantum Computing is the exponential increase in processing power and its potential to solve complex problems that are currently unsolvable or require an unfeasible amount of time to solve on classical computers.
+
+Quantum Computing's unique properties, such as superposition (the ability to process multiple values simultaneously), entanglement (the connection between particles), and quantum gates (the quantum equivalent of logic gates), enable it to perform certain calculations much faster than classical computers.
+
+Some of the
+2026-07-16 10:34:35,194 - src.logger - INFO - async_researcher.py:35 - ETHICIST: As an ethical analyst, I'd argue that the main impact of Quantum Computing has far-reaching implications across various aspects of society, but the primary concern revolves around the potential consequences on our fundamental concept of privacy, particularly in relation to individual data protection.
+
+Quantum computing, utilizing the principles of superposition and entanglement, enables faster processing of vast amounts of information compared to classical computers. However, this technology's capabilities also pose significant risks to secure data storage and online communications, as these systems could potentially
+2026-07-16 10:34:35,195 - src.logger - INFO - async_researcher.py:36 - 
+ Total time with Asyncio: 3.00 seconds
+2026-07-16 10:35:33,882 - src.logger - INFO - gradio_app.py:7 - Gradio UI sending request for: Quantum Computing
+2026-07-16 10:35:33,887 - src.logger - INFO - api.py:11 - 🚀 Topic: Quantum Computing | Perspective: economic
+2026-07-16 10:35:33,887 - src.logger - INFO - async_researcher.py:26 - Launching 3 agents concurrently...
+2026-07-16 10:35:33,887 - src.logger - INFO - async_researcher.py:11 - Economist agent is analyzing Quantum Computing...
+2026-07-16 10:35:33,891 - src.logger - INFO - async_researcher.py:11 - Technologist agent is analyzing Quantum Computing...
+2026-07-16 10:35:33,893 - src.logger - INFO - async_researcher.py:11 - Ethicist agent is analyzing Quantum Computing...
+2026-07-16 10:35:34,727 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:35:34,738 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:35:34,780 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:35:34,783 - src.logger - INFO - async_researcher.py:32 - 
+--- Consolidated Research Report---
+2026-07-16 10:35:34,784 - src.logger - INFO - async_researcher.py:35 - ECONOMIST: As an economist, the main impact of quantum computing will be far-reaching and transformative, with significant effects on various sectors, including finance, energy, logistics, and more. Some of the key areas where quantum computing will have a substantial impact are:
+
+1. **Cryptography and Cybersecurity**: Quantum computers can potentially break certain types of classical cryptography, compromising the security of online transactions and data. This will require the development of quantum-resistant cryptography and new security protocols.
+
+Impact: **Loss of confidentiality**: Companies
+2026-07-16 10:35:34,784 - src.logger - INFO - async_researcher.py:35 - TECHNOLOGIST: As a Technologist, the main impact of Quantum Computing is the potential to revolutionize numerous fields and industries by solving complex problems that are currently intractable or require an impractically long time to solve with classical computers. This is due to Quantum Computing's ability to process vast amounts of data in a parallel and probabilistic manner.
+
+Here are some key impacts of Quantum Computing:
+
+1. **Faster Simulations and Modeling**: Quantum Computing can simulate complex systems, such as molecules and chemical reactions,
+2026-07-16 10:35:34,785 - src.logger - INFO - async_researcher.py:35 - ETHICIST: As an ethicist, I'd like to explore the potential main impact of quantum computing on various aspects of our society, focusing on its implications for security, economy, and individual rights.
+
+1. **Cybersecurity**: Quantum computers can potentially break many encryption algorithms currently used to secure online transactions, communication, and data storage. This could have a significant impact on the security of sensitive information, making it vulnerable to cyber attacks and identity theft.
+
+**Impact on individual rights**: The compromise of sensitive information could
+2026-07-16 10:35:34,785 - src.logger - INFO - async_researcher.py:36 - 
+ Total time with Asyncio: 0.90 seconds
+2026-07-16 10:39:12,929 - src.logger - INFO - gradio_app.py:7 - Gradio UI sending request for: Quantum Computing
+2026-07-16 10:39:13,065 - src.logger - INFO - api.py:11 - 🚀 Topic: Quantum Computing | Perspective: economic
+2026-07-16 10:39:13,065 - src.logger - INFO - async_researcher.py:26 - Launching 3 agents concurrently...
+2026-07-16 10:39:13,066 - src.logger - INFO - async_researcher.py:11 - Economist agent is analyzing Quantum Computing...
+2026-07-16 10:39:14,484 - src.logger - INFO - async_researcher.py:11 - Technologist agent is analyzing Quantum Computing...
+2026-07-16 10:39:14,486 - src.logger - INFO - async_researcher.py:11 - Ethicist agent is analyzing Quantum Computing...
+2026-07-16 10:39:16,581 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:39:16,619 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:39:16,629 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:39:16,647 - src.logger - INFO - async_researcher.py:32 - 
+--- Consolidated Research Report---
+2026-07-16 10:39:16,651 - src.logger - INFO - async_researcher.py:35 - ECONOMIST: As an economist, I would argue that the main impact of quantum computing will be far-reaching and multifaceted, with significant implications for various industries, markets, and the global economy as a whole. Here are some of the key areas where quantum computing is likely to have a significant impact:
+
+1. **Efficient Optimization and Modeling**: Quantum computing will enable faster and more accurate optimization of complex systems, leading to improved decision-making in fields such as:
+	* Portfolio management and asset pricing
+	*
+2026-07-16 10:39:16,652 - src.logger - INFO - async_researcher.py:35 - TECHNOLOGIST: As a technologist, the main impact of Quantum Computing can be summarized into several key areas:
+
+1. **Exponential Speedup in Processing**: Quantum Computing promises to revolutionize the way we process information by leveraging quantum bits (qubits) that can perform calculations significantly faster than classical computers. This speedup will lead to breakthroughs in fields such as cryptography, optimization problems, and machine learning.
+
+2. **Solving Intractable Problems**: Quantum Computing can help solve complex problems that are currently uns
+2026-07-16 10:39:16,652 - src.logger - INFO - async_researcher.py:35 - ETHICIST: As an ethicist, I'd like to highlight the significant impact of Quantum Computing on various aspects of society. The main impact can be categorized into several areas:
+
+1. **Encryption and Cybersecurity**: Quantum Computing has the potential to break most of the encryption algorithms currently in use, which would have far-reaching consequences for data security and privacy. This could lead to significant vulnerabilities in financial systems, communication networks, and individual data storage.
+
+2. **Artificial Intelligence and Machine Learning**: Quantum Computing can exponentially
+2026-07-16 10:39:16,654 - src.logger - INFO - async_researcher.py:36 - 
+ Total time with Asyncio: 3.58 seconds
+2026-07-16 10:43:19,942 - httpx - INFO - _client.py:1025 - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2026-07-16 10:43:20,171 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2026-07-16 10:43:22,028 - httpx - INFO - _client.py:1025 - HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-07-16 10:43:24,446 - httpx - INFO - _client.py:1025 - HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-07-16 10:43:24,446 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/telemetry/https%3A/api.gradio.app/gradio-initiated-analytics "HTTP/1.1 200 OK"
+2026-07-16 10:43:24,934 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/telemetry/https%3A/api.gradio.app/gradio-launched-telemetry "HTTP/1.1 200 OK"
+2026-07-16 10:45:36,541 - src.logger - INFO - gradio_app.py:7 - Gradio UI sending request for: what is an AI agent in two to three lines, what is agentic ai
+2026-07-16 10:45:36,617 - src.logger - INFO - api.py:11 - 🚀 Topic: what is an AI agent in two to three lines, what is agentic ai | Perspective: economic
+2026-07-16 10:45:36,618 - src.logger - INFO - async_researcher.py:26 - Launching 3 agents concurrently...
+2026-07-16 10:45:36,618 - src.logger - INFO - async_researcher.py:11 - Economist agent is analyzing what is an AI agent in two to three lines, what is agentic ai...
+2026-07-16 10:45:36,620 - src.logger - INFO - async_researcher.py:11 - Technologist agent is analyzing what is an AI agent in two to three lines, what is agentic ai...
+2026-07-16 10:45:36,622 - src.logger - INFO - async_researcher.py:11 - Ethicist agent is analyzing what is an AI agent in two to three lines, what is agentic ai...
+2026-07-16 10:45:37,499 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:45:37,544 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:45:37,590 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-16 10:45:37,593 - src.logger - INFO - async_researcher.py:32 - 
+--- Consolidated Research Report---
+2026-07-16 10:45:37,593 - src.logger - INFO - async_researcher.py:35 - ECONOMIST: As an economist, I would say that an AI agent has a main impact of disrupting traditional business models and industries, particularly in sectors with high predictability and efficiency such as logistics, finance, and transportation. This is often referred to as 'process automation'. 
+
+Agentic AI is a subset of this, where the AI agent has a level of autonomy to make decisions, adapt to changing circumstances, and interact with its environment in a way that resembles human agency. In other words, agentic AI is
+2026-07-16 10:45:37,594 - src.logger - INFO - async_researcher.py:35 - TECHNOLOGIST: As a Technologist, I can describe the main impact of AI agents and Agentic AI as follows:
+
+**AI Agent:** An AI agent is a software program designed to interact and respond to its environment, with the ability to make decisions and take actions autonomously. The main impact of AI agents is to automate tasks, increase efficiency, and enhance customer experiences across various industries, leading to improved productivity and competitiveness.
+
+**Agentic AI:** Agentic AI refers to a type of AI that possesses autonomous decision
+2026-07-16 10:45:37,594 - src.logger - INFO - async_researcher.py:35 - ETHICIST: As an ethicist, I'd argue that the main impact of Artificial Intelligence (AI) involves the potential for autonomous decision-making, which can either augment human capabilities or erode trust and accountability. 
+
+Agentic AI refers to a specific type of AI that possesses self-awareness and the ability to make decisions independent of human input.
+2026-07-16 10:45:37,594 - src.logger - INFO - async_researcher.py:36 - 
+ Total time with Asyncio: 0.98 seconds

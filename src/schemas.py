@@ -5,7 +5,7 @@ class ResearchRequest(BaseModel):
     """Schema for a research task request."""
 
     topic: str = Field(
-        ...,
+        ...,  # means REQUIRED
         min_length=3,
         max_length=100,
         description="The subject to be researched by the agent."
