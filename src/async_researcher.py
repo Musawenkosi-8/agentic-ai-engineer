@@ -1,7 +1,7 @@
 import asyncio
 import time
 from groq import AsyncGroq
-from .config import Config
+from src.config import Config
 from src.logger import logger
 
 client = AsyncGroq(api_key=Config.GROQ_API_KEY)
