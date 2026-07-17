@@ -1,8 +1,8 @@
-from .llm_handler import ask_llm
-from .prompts import get_intent_prompt
+from src.llm_handler import ask_llm
+from src.prompts import get_intent_prompt
 
-question = input("Enter your question: ")
+user_input = input("Enter your question: ")
 prompt = get_intent_prompt(user_input)
-answer = ask_llm(prompt)
+intent = ask_llm(prompt)
 
 print(f"Intent: {intent}")

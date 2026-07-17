@@ -1,29 +1,9 @@
 from pydantic import BaseModel, Field
-from typing import Literal
+from typing import List
 
-class ResearchRequest(BaseModel):
-    """Schema for a research task request."""
-
-    topic: str = Field(
-        ...,  # means REQUIRED
-        min_length=3,
-        max_length=100,
-        description="The subject to be researched by the agent."
-    )
-
-    max_analysts: int = Field(
-        default=3,
-        ge=1,
-        le=5,
-        description="Number of expert agents to launch concurrently."
-    )
-
-    perspective: Literal[
-        "economic",
-        "historical",
-        "technological",
-        "political"
-    ] = Field(
-        default="economic",
-        description="Research perspective to guide the analysis."
-    )
+class MaintenanceAudit(BaseModel):
+    """Structured output for the Domain Expert Agent."""
+    reasoning: str = Field(..., description="CoT trace explaining the audit findings.")
+    severity_level: str = Field(..., pattern="^(Low|Medium|High|Critical)$")
+    detected_risks: List[str] = Field(..., min_items=1)
+    estimated_cost_usd: float = Field(..., gt=0)
