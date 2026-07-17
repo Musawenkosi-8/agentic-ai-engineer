@@ -7,3 +7,18 @@ class MaintenanceAudit(BaseModel):
     severity_level: str = Field(..., pattern="^(Low|Medium|High|Critical)$")
     detected_risks: List[str] = Field(..., min_items=1)
     estimated_cost_usd: float = Field(..., gt=0)
+
+class ResearchRequest(BaseModel):
+    topic: str = Field(
+        ...,
+        min_length=3,
+        max_length=100,
+        description="Topic to research"
+    )
+
+    max_analysts: int = Field(
+        default=3,
+        ge=1,
+        le=5,
+        description="Number of analyst agents"
+    )   

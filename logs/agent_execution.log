@@ -1,2 +1,11 @@
 2026-07-16 20:57:30,554 - httpx - INFO - _client.py:1025 - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
 2026-07-16 20:57:30,826 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2026-07-17 20:30:01,467 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-17 20:32:56,927 - AgenticResearcher - ERROR - streamlit_app.py:74 - UI Connection Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /stream-research (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-07-17 20:34:46,343 - AgenticResearcher - ERROR - streamlit_app.py:74 - UI Connection Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /stream-research (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-07-17 20:40:30,598 - AgenticResearcher - ERROR - streamlit_app.py:74 - UI Connection Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /stream-research (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-07-17 20:57:01,738 - AgenticResearcher - INFO - api.py:32 - Processing validated research for: Artificial intelligence
+2026-07-17 20:57:01,801 - AgenticResearcher - INFO - api.py:13 - Initializing stream for topic: Artificial intelligence
+2026-07-17 20:57:04,467 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-17 20:57:04,501 - AgenticResearcher - ERROR - api.py:26 - MID-STREAM FAILURE for 'Artificial intelligence': 'list' object has no attribute 'delta'
+2026-07-17 20:57:24,945 - AgenticResearcher - INFO - streamlit_app.py:64 - UI successfully rendered response for: Artificial intelligence

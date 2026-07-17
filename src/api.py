@@ -17,8 +17,12 @@ async def groq_stream_generator(topic: str):
             stream=True
         )
         async for chunk in stream:
-            if chunk.choices.delta.content:
-                yield chunk.choices.delta.content
+
+            content = chunk.choices[0].delta.content
+
+            if content:
+                yield content           
+            
 
         logger.info(f"Stream successfully completed for: {topic}")
 
