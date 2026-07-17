@@ -1,0 +1,2 @@
+2026-07-16 20:57:30,554 - httpx - INFO - _client.py:1025 - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2026-07-16 20:57:30,826 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"

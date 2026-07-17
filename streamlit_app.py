@@ -1,63 +1,45 @@
 import streamlit as st
+from streamlit import config as _config
+from streamlit import config_util, development, env_util, file_util, util
+from streamlit import cli_util, url_util
+import requests
 from src.logger import logger
 
-st.set_page_config(page_title="Agentic Researcher UI", page_icon="🤖")
+st.set_page_config(page_title="Agentic Researcher AI", page_icon="🤖")
+st.title("Resilient Research Agent")
 
 # =========================
 # Sidebar
 # =========================
 st.sidebar.header("Research Settings")
 
-max_analysts = st.sidebar.slider(
-    "Maximum Analysts",
-    min_value=1,
-    max_value=5,
-    value=3,
-    help="Select how many analyst agents will participate in the research."
-)
+max_analysts = st.sidebar.slider("Specialist Agents", 1, 5, 3)
+st.sidebar.info("Logs: logs/agent_execution.log")
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).markdown(msg["content"])
 
-st.sidebar.success("Backend: Online")
-
-# =========================
-# Main Page
-# =========================
-st.title("🚀 Agentic AI Research Assistant")
-st.markdown("Enter a topic below to launch your concurrent research agents.")
-
-# Session State
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# Display Chat History
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
-# Chat Input
-if prompt := st.chat_input("What would you like to research?"):
-
-    st.session_state.messages.append(
-        {"role": "user", "content": prompt}
-    )
-
-    with st.chat_message("user"):
-        st.markdown(prompt)
+if prompt := st.chat_input("Research topic..."):
+    st.session_state.messages.append({"role":"user", "content":prompt})
+    st.chat_message("user").markdown(prompt)
 
     with st.chat_message("assistant"):
-        response_placeholder = st.empty()
+        try:
+            response = requests.post("http://127.0.0.1:8000/stream-research",
+                                     json={"topic": prompt,
+                                           "max_analysts": max_analysts},
+                                           stream=True,
+                                           timeout=30)
+            response.raise_for_status()
+            def stream_handler():
+                for chunk in response.iter_content(chunk_size=None,
+                                                   decode_unicode=True):
+                    yield chunk
 
-        full_response = (
-            f"I have received your request to research: "
-            f"**{prompt}** using **{max_analysts} analyst(s)**. "
-            f"(Backend integration coming Friday!)"
-        )
+                full_response = st.write_stream(stream_handler())
 
-        response_placeholder.markdown(full_response)
-
-    st.session_state.messages.append(
-        {"role": "assistant", "content": full_response}
-    )
-
-    logger.info(
-        f"UI received input: {prompt} | max_analysts={max_analysts}"
-    )
+                st.session_state.messaegs.append({"role":"assistant", "content": full_response})
+                logger.info(f"UI Successfully rendered response for: {prompt}")
+        except requests.exceptions.RequestException as e:
+            error_msg = f" Connection Failed: {str(e)}"
+            st.error(error-msg)
+            logger.error(f"UI Connection Error: {str(e)}")        
