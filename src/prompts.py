@@ -1,23 +1,15 @@
-# Standard persona and instruction
-SYSTEM_PROMPT = """You are a highly precise Intent Classifier. 
-Your job is to categorize user input into one of three labels: RESEARCH, CALCULATION, or GREETING.
-Return ONLY the label."""
+# A Few-Shot CoT prompt providing reasoning traces
+COT_RESEARCH_PROMPT = """You are an expert Research Analyst. 
+When given a topic, you must first break down the core components you need to investigate, 
+identify potential contradictions, and then provide a final synthesis.
 
-# Few-shot examples to "teach" the model the pattern
-FEW_SHOT_EXAMPLES = """
-User: Hello there, how are you?
-Label: GREETING
+User: What is the impact of a high-interest rate on the tech sector?
+Thought: 
+1. High-interest rates increase the cost of borrowing.
+2. Tech companies often rely on debt for rapid growth.
+3. Higher rates lead to lower present value of future cash flows, hurting valuations.
+4. Capital might shift from growth stocks (tech) to safer yield assets.
+Conclusion: High rates generally lead to decreased tech valuations and slower expansion due to higher capital costs.
 
-User: What is the square root of 144?
-Label: CALCULATION
-
-User: Can you find the latest papers on Quantum Computing?
-Label: RESEARCH
-
-User: Hi!
-Label: GREETING
-"""
-
-def get_intent_prompt(user_input: str):
-    """Combines the system instruction, few-shot examples, and the new query."""
-    return f"{SYSTEM_PROMPT}\n\n{FEW_SHOT_EXAMPLES}\nUser: {user_input}\nLabel:"
+User: {user_input}
+Thought:"""
