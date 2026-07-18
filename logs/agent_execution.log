@@ -14,3 +14,4 @@
 2026-07-18 16:48:58,190 - AgenticResearcher - INFO - streamlit_app.py:33 - UI received input: what is an Agent
 2026-07-18 17:04:49,870 - AgenticResearcher - INFO - streamlit_app.py:201 - UI received input: Agentic Ai
 2026-07-18 17:38:11,345 - AgenticResearcher - INFO - streamlit_app.py:220 - UI received input: what is agentic ai
+2026-07-18 17:49:36,670 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
