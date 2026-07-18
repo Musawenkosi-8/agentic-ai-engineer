@@ -1,8 +1,21 @@
+from fastapi import FastAPI
 from src.llm_handler import ask_llm
-from src.prompts import get_intent_prompt
 
-user_input = input("Enter your question: ")
-prompt = get_intent_prompt(user_input)
-intent = ask_llm(prompt)
+app = FastAPI(title="Agentic AI Research Assistant")
 
-print(f"Intent: {intent}")
+
+@app.get("/")
+def home():
+    return {
+        "message": "Agentic AI API is running"
+    }
+
+
+@app.post("/ask")
+def ask_question(question: str):
+    answer = ask_llm(question)
+
+    return {
+        "question": question,
+        "answer": answer
+    }

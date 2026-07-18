@@ -6,7 +6,6 @@ from src.logger import logger
 
 client = Groq(api_key=GROQ_API_KEY)
 
-
 def ask_llm(prompt):
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",

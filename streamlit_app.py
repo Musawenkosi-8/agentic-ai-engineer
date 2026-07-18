@@ -2,75 +2,221 @@ import streamlit as st
 import requests
 from src.logger import logger
 
+API_URL = "http://127.0.0.1:8000/research"
+
+
+# ==============================
+# Page Configuration
+# ==============================
+
 st.set_page_config(
     page_title="Agentic Researcher AI",
-    page_icon="🤖"
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-st.title("Resilient Research Agent")
+
+# ==============================
+# Sidebar Configuration
+# ==============================
+
+with st.sidebar:
+
+    st.title("🤖 Agent Control Panel")
+
+    st.markdown("---")
+
+    # Application status
+    st.subheader("🟢 System Status")
+
+    st.success("API Online")
+    st.info("LLM: Groq Llama 3.3 70B")
+
+
+    st.markdown("---")
+
+
+    # Agent settings
+    st.subheader("🧠 Agent Settings")
+
+    max_agents = st.slider(
+        "Number of Research Agents",
+        min_value=1,
+        max_value=10,
+        value=3
+    )
+
+
+    research_depth = st.selectbox(
+        "Research Depth",
+        [
+            "Quick Summary",
+            "Standard Analysis",
+            "Deep Investigation"
+        ]
+    )
+
+
+    enable_sources = st.checkbox(
+        "Include Sources",
+        value=True
+    )
+
+
+    st.markdown("---")
+
+
+    # Model settings
+    st.subheader("⚙️ Model Configuration")
+
+
+    model = st.selectbox(
+        "Select LLM Model",
+        [
+            "llama-3.3-70b-versatile",
+            "llama-3.1-8b-instant"
+        ]
+    )
+
+
+    temperature = st.slider(
+        "Creativity Level",
+        min_value=0.0,
+        max_value=1.0,
+        value=0.7,
+        step=0.1
+    )
+
+
+    st.markdown("---")
+
+
+    # About section
+    st.subheader("📌 About")
+
+    st.caption(
+        """
+        Agentic Research Assistant
+
+        Built with:
+        - FastAPI
+        - Streamlit
+        - Groq LLM
+        - Async Agents
+        - LangGraph (Future)
+        """
+    )
+
+
+# ==============================
+# Main Application
+# ==============================
+
+
+st.title("🚀 Agentic AI Research Assistant")
+
+st.markdown(
+    """
+    Enter a topic below and your AI research agents
+    will collaborate to analyze the subject.
+    """
+)
+
+
+# ==============================
+# Session State
+# ==============================
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Sidebar
-st.sidebar.header("Research Settings")
-max_analysts = st.sidebar.slider("Specialist Agents", 1, 5, 3)
-st.sidebar.info("Logs: logs/agent_execution.log")
 
-# Display chat history
-for msg in st.session_state.messages:
-    st.chat_message(msg["role"]).markdown(msg["content"])
+# ==============================
+# Chat History
+# ==============================
 
-# Chat input
-if prompt := st.chat_input("Research topic..."):
+for message in st.session_state.messages:
+
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+
+
+# ==============================
+# User Input
+# ==============================
+
+if prompt := st.chat_input(
+    "What would you like to research?"
+):
 
     st.session_state.messages.append(
-        {"role": "user", "content": prompt}
+        {
+            "role": "user",
+            "content": prompt
+        }
     )
 
-    st.chat_message("user").markdown(prompt)
 
+    with st.chat_message("user"):
+        st.markdown(prompt)
+
+
+
+    # Future API call
+        # API call to FastAPI backend
     with st.chat_message("assistant"):
 
+        response_placeholder = st.empty()
+
+        payload = {
+            "topic": prompt,
+            "max_analysts": max_agents
+        }
+
+
         try:
+
             response = requests.post(
-                "http://127.0.0.1:8000/stream-research",
-                json={
-                    "topic": prompt,
-                    "max_analysts": max_analysts
-                },
-                stream=True,
-                timeout=30
+                API_URL,
+                json=payload
             )
 
-            response.raise_for_status()
 
-            def stream_handler():
-                for chunk in response.iter_content(
-                    chunk_size=None,
-                    decode_unicode=True
-                ):
-                    yield chunk
+            if response.status_code == 200:
 
-            full_response = st.write_stream(stream_handler())
+                data = response.json()
 
-            st.session_state.messages.append(
-                {
-                    "role": "assistant",
-                    "content": full_response
-                }
+                full_response = data["answer"]
+
+            else:
+
+                full_response = (
+                    f"Backend Error: {response.status_code}"
+                )
+
+
+        except Exception as e:
+
+            full_response = (
+                f"Connection Error: {str(e)}"
             )
 
-            logger.info(
-                f"UI successfully rendered response for: {prompt}"
-            )
 
-        except requests.exceptions.RequestException as e:
+        response_placeholder.markdown(
+            full_response
+        )
 
-            error_msg = f"Connection Failed: {e}"
 
-            st.error(error_msg)
+    st.session_state.messages.append(
+        {
+            "role": "assistant",
+            "content": full_response
+        }
+    )
 
-            logger.error(
-                f"UI Connection Error: {e}"
-            )
+
+    logger.info(
+        f"UI received input: {prompt}"
+    )
