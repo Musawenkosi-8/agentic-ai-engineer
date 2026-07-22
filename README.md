@@ -253,6 +253,40 @@ in the terminal to stop the Streamlit server.
 ### Key Takeaway
 HNSW provides **5-6x faster** retrieval with minimal accuracy loss, making it ideal for production systems with large document collections.
 
+## Hybrid Search Architecture
+
+### Overview
+The system combines **BM25 (keyword-based)** and **FAISS (vector-based)** retrieval to achieve both precision and semantic understanding.
+
+### How It Works
+
+1. **Keyword Search (BM25)**
+   - Excellent for exact matches (codes, names, specific terms)
+   - Uses tokenization and TF-IDF statistics
+   - Fast and reliable for known-item queries
+
+2. **Vector Search (FAISS)**
+   - Understands semantic meaning and context
+   - Finds documents with similar concepts even without exact matches
+   - Handles synonyms and paraphrasing
+
+3. **Reciprocal Rank Fusion (RRF)**
+   - Combines results from both systems optimally
+   - Formula: `score = sum(1 / (60 + rank))`
+   - No need to normalize different scoring systems
+   - Prevents either system from dominating the results
+
+### Benefits for Agent Systems
+
+| Capability | Benefit |
+|------------|---------|
+| **Precision** | Finds exact codes and IDs (e.g., GHOST-99, AX-500) |
+| **Recall** | Finds semantically related documents even without exact matches |
+| **Robustness** | Works well for both specific and ambiguous queries |
+| **Speed** | FAISS provides sub-10ms retrieval at scale |
+
+### Example: GHOST-99 Use Case
+
 
 Author
 Musawenkosi Nyawo
