@@ -1,3 +1,5 @@
+import sys
+from pathlib import Path
 import asyncio
 import time
 from groq import AsyncGroq
@@ -5,6 +7,8 @@ from src.config import Config
 from src.logger import logger
 
 client = AsyncGroq(api_key=Config.GROQ_API_KEY)
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 async def ask_agent(expert_type, topic):
     """Specialized Agent Node"""
@@ -36,7 +40,7 @@ async def run_concurrent_research(
     logger.info(f"\n Total time with Asyncio: {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":
-     asyncio.run(run_concurrent_research("Deployed AI Engineer"))
+     asyncio.run(run_concurrent_research("Deployed AI Engineer", "AI engineering career impact"))
     
     
               

@@ -15,3 +15,37 @@
 2026-07-18 17:04:49,870 - AgenticResearcher - INFO - streamlit_app.py:201 - UI received input: Agentic Ai
 2026-07-18 17:38:11,345 - AgenticResearcher - INFO - streamlit_app.py:220 - UI received input: what is agentic ai
 2026-07-18 17:49:36,670 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-24 17:36:17,255 - sentence_transformers.base.model - INFO - model.py:190 - No device provided, using cpu
+2026-07-24 17:36:18,988 - httpx - INFO - _client.py:1025 - HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-07-24 17:36:19,359 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6v2/resolve/main/modules.json "HTTP/1.1 401 Unauthorized"
+2026-07-24 18:01:47,028 - sentence_transformers.base.model - INFO - model.py:190 - No device provided, using cpu
+2026-07-24 18:01:49,076 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6v2/resolve/main/modules.json "HTTP/1.1 401 Unauthorized"
+2026-07-24 18:30:52,142 - AgenticResearcher - INFO - async_researcher.py:30 - Launching 3 agents concurrently...
+2026-07-24 18:30:52,175 - AgenticResearcher - INFO - async_researcher.py:15 - Economist agent is analyzing Deployed AI Engineer...
+2026-07-24 18:30:53,390 - AgenticResearcher - INFO - async_researcher.py:15 - Technologist agent is analyzing Deployed AI Engineer...
+2026-07-24 18:30:53,392 - AgenticResearcher - INFO - async_researcher.py:15 - Ethicist agent is analyzing Deployed AI Engineer...
+2026-07-24 18:30:54,997 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-24 18:30:55,127 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-24 18:30:55,131 - httpx - INFO - _client.py:1740 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-24 18:30:55,241 - AgenticResearcher - INFO - async_researcher.py:36 - 
+--- Consolidated Research Report---
+2026-07-24 18:30:55,242 - AgenticResearcher - INFO - async_researcher.py:39 - ECONOMIST: As an economist, I'd like to analyze the main impact of deployed AI engineers on the economy and industry.
+
+**Main impact:**
+
+1. **Increased Efficiency:** Deployed AI engineers can help businesses automate repetitive and mundane tasks, freeing up human resources for more complex and high-value tasks. This can lead to a significant increase in productivity and efficiency, resulting in cost savings and improved competitiveness.
+2. **Innovation and Job Creation:** As AI engineers build and deploy AI models, they often create new
+2026-07-24 18:30:55,242 - AgenticResearcher - INFO - async_researcher.py:39 - TECHNOLOGIST: As a technologist, I can outline the main impact of a deployed AI engineer. 
+
+1. **Improved Business Efficiency**: A deployed AI engineer optimizes business processes by integrating AI and ML models into existing systems. This results in improved efficiency, reduced manual labor, and enhanced productivity.
+
+2. **Enhanced Customer Experience**: AI engineers deploy AI and ML solutions that facilitate personalized customer experiences. This leads to improved customer satisfaction, increased brand loyalty, and positive word-of-mouth.
+
+3. **Predictive
+2026-07-24 18:30:55,242 - AgenticResearcher - INFO - async_researcher.py:39 - ETHICIST: As an ethicist, I'll consider the potential main impact of a Deployed AI Engineer. A Deployed AI Engineer uses Artificial Intelligence (AI) and Machine Learning (ML) techniques to develop, test, and deploy intelligent systems in various industries and domains.
+
+The main impact of a Deployed AI Engineer can be both beneficial and harmful, depending on the intended application and the engineer's motivations. Some significant potential impacts include:
+
+1. **Increased Efficiency**: Deployed AI Engineers can optimize business processes,
+2026-07-24 18:30:55,256 - AgenticResearcher - INFO - async_researcher.py:40 - 
+ Total time with Asyncio: 3.10 seconds

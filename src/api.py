@@ -3,7 +3,7 @@ from fastapi.responses import StreamingResponse
 
 from src.schemas import ResearchRequest
 from src.async_researcher import run_concurrent_research, client
-from src.logger import logger
+from .logger import logger
 
 
 app = FastAPI(

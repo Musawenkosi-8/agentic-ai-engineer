@@ -1,5 +1,6 @@
 from rank_bm25 import BM25Okapi
-from src.faiss_retriever import build_faiss_index, search_faiss  
+from src.faiss_retriever import build_faiss_index, search_faiss
+from src.embeddings import model
 from src.logger import logger
 import numpy as np
 from typing import List, Tuple, Dict

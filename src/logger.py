@@ -14,17 +14,3 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger("AgenticResearcher")
-
-
-
-# Configure logging to output to both console and a file for auditability
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.FileHandler("agent_execution.log")
-    ]
-)
-
-logger = logging.getLogger("AgenticResearcher")
