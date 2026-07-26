@@ -80,3 +80,5 @@ Main Impacts of Deployed AI Engineer:
 2026-07-26 18:31:26,636 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
 2026-07-26 18:33:52,983 - AgenticResearcher - INFO - chains.py:22 - 🚀 Starting research chain for: The future of Agentic AI in 2026
 2026-07-26 18:33:56,159 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-26 18:56:01,360 - AgenticResearcher - INFO - chains.py:32 - 🚀 Starting streaming research chain for: The future of Agentic AI in 2026
+2026-07-26 18:56:02,297 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
