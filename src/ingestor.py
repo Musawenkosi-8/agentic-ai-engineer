@@ -8,6 +8,16 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from src.logger import logger
 import os
 
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+USER_AGENT = os.getenv(
+    "USER_AGENT",
+    "AgenticAIResearchBot/1.0"
+)
+
 
 def process_document(source: str, is_web: bool = False):
     """
@@ -22,7 +32,12 @@ def process_document(source: str, is_web: bool = False):
         # 1. Flexible Loading
         if is_web:
             logger.info(f"🌐 Loading web content from: {source}")
-            loader = WebBaseLoader(source)
+            loader = WebBaseLoader(
+    source,
+    header_template={
+        "User-Agent": USER_AGENT
+    }
+)
 
         else:
             extension = os.path.splitext(source)[1].lower()

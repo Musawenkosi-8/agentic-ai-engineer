@@ -95,3 +95,11 @@ Main Impacts of Deployed AI Engineer:
 2026-07-27 19:21:30,283 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2026-07-27 19:24:06,588 - AgenticResearcher - INFO - memory.py:40 - 💬 [Session 083] Requesting Groq...
 2026-07-27 19:24:07,436 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-27 19:43:56,049 - AgenticResearcher - INFO - ingestor.py:24 - 🌐 Loading web content from: https://python.langchain.com/docs/introduction/
+2026-07-27 19:43:56,083 - AgenticResearcher - ERROR - ingestor.py:84 - 🚨 Ingestion Failure for https://python.langchain.com/docs/introduction/: No module named 'bs4'
+2026-07-27 19:47:09,471 - AgenticResearcher - INFO - ingestor.py:24 - 🌐 Loading web content from: https://python.langchain.com/docs/introduction/
+2026-07-27 19:47:13,228 - AgenticResearcher - INFO - ingestor.py:75 - ✅ Processed 1 documents into 14 chunks.
+2026-07-27 19:49:40,685 - AgenticResearcher - INFO - ingestor.py:34 - 🌐 Loading web content from: https://python.langchain.com/docs/introduction/
+2026-07-27 19:49:43,250 - AgenticResearcher - INFO - ingestor.py:85 - ✅ Processed 1 documents into 14 chunks.
+2026-07-27 19:52:44,463 - AgenticResearcher - INFO - ingestor.py:34 - 🌐 Loading web content from: https://python.langchain.com/docs/introduction/
+2026-07-27 19:52:47,657 - AgenticResearcher - INFO - ingestor.py:90 - ✅ Processed 1 documents into 14 chunks.
