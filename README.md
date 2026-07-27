@@ -400,6 +400,42 @@ The Industry Search Engine successfully demonstrates:
 
 This implementation provides a complete Industry Search Engine with hybrid retrieval, visualization, and comprehensive analysis of document clustering quality!
 
+## Knowledge Ingestion
+
+The ingestion pipeline supports multiple knowledge sources:
+
+- PDF documents
+- Web pages
+- CSV datasets
+
+### Processing Flow
+
+Source Document
+      |
+      ↓
+Document Loader
+      |
+      ↓
+Recursive Text Splitting
+      |
+      ↓
+Semantic Chunks
+      |
+      ↓
+Vector Database Storage
+
+
+### Data Reliability
+
+The ingestion pipeline follows a failure-resistant approach:
+
+- Missing files are captured through exception handling.
+- Unsupported file formats are rejected before processing.
+- Loading failures are logged for debugging.
+- Failed ingestion returns an empty result instead of crashing the application.
+
+This ensures the agent can continue operating even when individual knowledge sources fail.
+
 
 Author
 Musawenkosi Nyawo
