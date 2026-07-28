@@ -5,25 +5,27 @@ from src.vector_store import query_memory
 from src.logger import logger
 
 
-# ===========================
-# 1. Setup LLM
-# ===========================
+# =====================================================
+# 1. LLM Configuration
+# =====================================================
 
 llm = ChatGroq(
     model="llama-3.3-70b-versatile"
 )
 
 
-# ===========================
+# =====================================================
 # 2. HyDE Prompt
-# ===========================
+# =====================================================
 
 hyde_prompt = ChatPromptTemplate.from_template(
     """
-You are an expert assistant.
+You are an expert knowledge retrieval assistant.
 
-Generate ONE concise hypothetical answer that could help
-retrieve information from a knowledge base.
+Generate a hypothetical answer that would likely
+appear in a knowledge base containing the answer.
+
+The answer will be used only for document retrieval.
 
 Question:
 {question}
@@ -33,46 +35,51 @@ Return only the hypothetical answer.
 )
 
 
-# ===========================
-# 3. Context Grader Prompt
-# ===========================
+# =====================================================
+# 3. Context Grading Prompt
+# =====================================================
 
 grader_prompt = ChatPromptTemplate.from_template(
     """
-You are a context relevance grader.
+You are a strict RAG context evaluator.
 
-Your job is to decide whether the context contains useful
-information to answer the question.
+Determine whether the provided context contains enough
+information to answer the user question.
 
 Context:
 {context}
 
+
 Question:
 {question}
 
-Reply with ONLY:
 
-relevant
+Respond ONLY with:
+
+YES
 
 or
 
-irrelevant
+NO
 """
 )
 
 
-# ===========================
+# =====================================================
 # 4. Answer Generation Prompt
-# ===========================
+# =====================================================
 
 answer_prompt = ChatPromptTemplate.from_template(
     """
 You are a helpful AI assistant.
 
-Answer the question using ONLY the provided context.
+Answer the user's question using ONLY the provided context.
 
-If the context does not contain the answer,
-say you do not know.
+Rules:
+- Do not use outside knowledge.
+- Do not hallucinate.
+- If the answer is missing, say you do not know.
+
 
 Context:
 {context}
@@ -84,49 +91,39 @@ Question:
 )
 
 
-# ===========================
-# 5. Smart RAG Pipeline
-# ===========================
+# =====================================================
+# 5. HyDE Query Generation
+# =====================================================
 
-def smart_rag(question: str):
-
-    logger.info(
-        f"🔎 Processing question: {question}"
-    )
-
-
-    # ---------------------------------
-    # STEP 1: HyDE Query Generation
-    # ---------------------------------
+def generate_hyde_query(question: str):
 
     logger.info(
-        "🧠 Generating hypothetical answer..."
+        "🧠 Generating HyDE retrieval query..."
     )
 
-    hypothetical_answer = llm.invoke(
+    response = llm.invoke(
         hyde_prompt.format(
             question=question
         )
-    ).content
-
-
-    logger.info(
-        f"📝 HyDE Query: {hypothetical_answer}"
     )
 
+    return response.content
 
-    # ---------------------------------
-    # STEP 2: ChromaDB Retrieval
-    # ---------------------------------
+
+
+# =====================================================
+# 6. Retrieve Documents From Memory
+# =====================================================
+
+def retrieve_documents(query: str, n_results: int = 3):
 
     logger.info(
-        "📚 Searching ChromaDB memory..."
+        "📚 Searching ChromaDB..."
     )
-
 
     results = query_memory(
-        hypothetical_answer,
-        n_results=3
+        query,
+        n_results=n_results
     )
 
 
@@ -136,113 +133,284 @@ def smart_rag(question: str):
     )[0]
 
 
-    if not documents:
-
-        logger.warning(
-            "🚨 No documents retrieved."
-        )
-
-        return (
-            "My internal knowledge base does not contain "
-            "information related to this question."
-        )
+    metadata = results.get(
+        "metadatas",
+        [[]]
+    )[0]
 
 
-    context_text = "\n\n".join(
-        documents
-    )
+    return documents, metadata
 
 
-    logger.info(
-        f"Retrieved {len(documents)} documents."
-    )
 
+# =====================================================
+# 7. Context Grading
+# =====================================================
 
-    # ---------------------------------
-    # STEP 3: Context Grading
-    # ---------------------------------
+def grade_context(
+    context: str,
+    question: str
+):
 
     logger.info(
-        "🧪 Checking context relevance..."
+        "🧪 Evaluating retrieved context..."
     )
 
 
-    grade = llm.invoke(
+    response = llm.invoke(
         grader_prompt.format(
-            context=context_text,
+            context=context,
             question=question
         )
-    ).content.strip().lower()
-
-
-    logger.info(
-        f"Context Grade: {grade}"
     )
 
 
-    # IMPORTANT:
-    # Do not use:
-    # if "relevant" in grade
-    #
-    # because:
-    # "irrelevant" contains "relevant"
+    grade = (
+        response.content
+        .strip()
+        .upper()
+    )
 
 
-    if grade == "relevant":
+    logger.info(
+        f"Context grade: {grade}"
+    )
+
+
+    return grade == "YES"
+
+
+
+# =====================================================
+# 8. Generate Final Answer
+# =====================================================
+
+def generate_answer(
+    context: str,
+    question: str
+):
+
+    logger.info(
+        "✍️ Generating final answer..."
+    )
+
+
+    response = llm.invoke(
+        answer_prompt.format(
+            context=context,
+            question=question
+        )
+    )
+
+
+    return response.content
+
+
+
+# =====================================================
+# 9. CRAG Corrective Retrieval
+# =====================================================
+
+def corrective_retrieval(question: str):
+
+    logger.warning(
+        "🔄 Starting Corrective RAG retrieval..."
+    )
+
+
+    documents, metadata = retrieve_documents(
+        question,
+        n_results=5
+    )
+
+
+    return documents, metadata
+
+
+
+# =====================================================
+# 10. Main Smart RAG Pipeline
+# =====================================================
+
+def smart_rag(question: str):
+
+    logger.info(
+        f"🔎 User question: {question}"
+    )
+
+
+    try:
+
+        # ---------------------------------
+        # Step 1: HyDE Retrieval
+        # ---------------------------------
+
+        hyde_query = generate_hyde_query(
+            question
+        )
 
 
         logger.info(
-            "✅ Context approved. Generating answer..."
+            f"HyDE query generated: {hyde_query[:100]}"
         )
 
 
-        response = llm.invoke(
-            answer_prompt.format(
-                context=context_text,
-                question=question
+        documents, metadata = retrieve_documents(
+            hyde_query
+        )
+
+
+        if not documents:
+
+            logger.warning(
+                "No documents retrieved."
             )
+
+            return (
+                "I could not find relevant information "
+                "in my knowledge base."
+            )
+
+
+        context = "\n\n".join(
+            documents
         )
 
 
-        return response.content
+        # ---------------------------------
+        # Step 2: Grade Context
+        # ---------------------------------
+
+        approved = grade_context(
+            context,
+            question
+        )
+
+
+        # ---------------------------------
+        # Step 3: CRAG fallback
+        # ---------------------------------
+
+        if not approved:
+
+            logger.warning(
+                "Initial retrieval failed grading."
+            )
+
+
+            documents, metadata = corrective_retrieval(
+                question
+            )
+
+
+            if documents:
+
+                context = "\n\n".join(
+                    documents
+                )
+
+
+                approved = grade_context(
+                    context,
+                    question
+                )
+
+
+        # ---------------------------------
+        # Step 4: Final Decision
+        # ---------------------------------
+
+        if not approved:
+
+            logger.warning(
+                "Context rejected after correction."
+            )
+
+
+            return (
+                "I cannot answer this confidently because "
+                "the retrieved knowledge does not contain "
+                "reliable information about this question."
+            )
+
+
+        answer = generate_answer(
+            context,
+            question
+        )
+
+
+        # ---------------------------------
+        # Step 5: Attach Sources
+        # ---------------------------------
+
+        sources = []
+
+
+        for item in metadata:
+
+            if item:
+
+                source = item.get(
+                    "filename",
+                    item.get(
+                        "source",
+                        "Unknown"
+                    )
+                )
+
+                sources.append(source)
+
+
+        if sources:
+
+            answer += "\n\nSources:\n"
+
+            for source in set(sources):
+
+                answer += f"- {source}\n"
+
+
+        return answer
 
 
 
-    # ---------------------------------
-    # STEP 4: Safe Fallback
-    # ---------------------------------
+    except Exception as e:
 
-    logger.warning(
-        "🚨 Context rejected. Preventing hallucination."
-    )
+        logger.exception(
+            f"RAG pipeline failure: {e}"
+        )
 
 
-    return (
-        "I cannot answer this confidently because "
-        "my knowledge base does not contain reliable "
-        "information about this topic."
-    )
+        return (
+            "An error occurred while processing "
+            "your request."
+        )
 
 
 
-# ===========================
-# Manual Test
-# ===========================
+# =====================================================
+# Manual Testing
+# =====================================================
 
 if __name__ == "__main__":
+
 
     while True:
 
         question = input(
-            "\nAsk something (type exit): "
+            "\nAsk something (exit): "
         )
 
 
         if question.lower() == "exit":
+
             break
 
 
-        answer = smart_rag(question)
+        answer = smart_rag(
+            question
+        )
 
 
         print(

@@ -1,80 +1,160 @@
-from langchain_community.document_loaders import (
-    PyPDFLoader,
-    WebBaseLoader,
-    CSVLoader,
-)
-
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from src.logger import logger
 import os
+from datetime import datetime, UTC
+from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 
+from langchain_community.document_loaders import (
+    CSVLoader,
+    PyPDFLoader,
+    WebBaseLoader,
+)
+
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+from src.logger import logger
+
 
 load_dotenv()
+
 
 USER_AGENT = os.getenv(
     "USER_AGENT",
     "AgenticAIResearchBot/1.0"
 )
 
+CHUNK_SIZE = 1000
+CHUNK_OVERLAP = 100
 
-def process_document(source: str, is_web: bool = False):
+
+def _get_filename(source: str):
     """
-    Ingests and splits documents with a Senior Mindset:
-    - Supports multiple data sources
-    - Preserves context integrity
-    - Handles ingestion failures safely
+    Generates a readable filename/source identifier.
+    """
+
+    if source.startswith(("http://", "https://")):
+        parsed_url = urlparse(source)
+
+        return parsed_url.netloc
+
+    return os.path.basename(source)
+
+
+def _get_loader(source: str):
+    """
+    Returns the correct LangChain loader based on source type.
+    """
+
+    if source.startswith(("http://", "https://")):
+
+        logger.info(
+            f"🌐 Loading website: {source}"
+        )
+
+        return (
+            WebBaseLoader(
+                source,
+                header_template={
+                    "User-Agent": USER_AGENT
+                }
+            ),
+            "web"
+        )
+
+
+    extension = os.path.splitext(source)[1].lower()
+
+
+    if extension == ".pdf":
+
+        logger.info(
+            f"📄 Loading PDF: {source}"
+        )
+
+        return (
+            PyPDFLoader(source),
+            "pdf"
+        )
+
+
+    if extension == ".csv":
+
+        logger.info(
+            f"📊 Loading CSV: {source}"
+        )
+
+        return (
+            CSVLoader(source),
+            "csv"
+        )
+
+
+    raise ValueError(
+        f"Unsupported source type: {extension}"
+    )
+
+
+def ingest_source(source: str):
+    """
+    Loads, enriches metadata, and splits documents.
+
+    Supported:
+    - PDF
+    - CSV
+    - Website
+
+    Returns:
+        List of LangChain Document chunks
     """
 
     try:
 
-        # 1. Flexible Loading
-        if is_web:
-            logger.info(f"🌐 Loading web content from: {source}")
-            loader = WebBaseLoader(
-    source,
-    header_template={
-        "User-Agent": USER_AGENT
-    }
-)
-
-        else:
-            extension = os.path.splitext(source)[1].lower()
-
-            if extension == ".pdf":
-                logger.info(f"📄 Loading PDF: {source}")
-                loader = PyPDFLoader(source)
-
-            elif extension == ".csv":
-                logger.info(f"📊 Loading CSV: {source}")
-                loader = CSVLoader(source)
-
-            else:
-                raise ValueError(
-                    f"Unsupported file type: {extension}"
-                )
+        loader, source_type = _get_loader(source)
 
 
         docs = loader.load()
 
 
-        # 2. Strategic Splitting
-        #
-        # RecursiveCharacterTextSplitter preserves natural boundaries:
-        # paragraph -> sentence -> word -> character
-        #
-        # For technical documentation, semantic chunking can sometimes
-        # outperform character splitting because it groups text based
-        # on meaning rather than arbitrary character length.
-        #
-        # Example:
-        # SemanticChunker analyzes embeddings and attempts to keep
-        # conceptually related sentences together.
+        if not docs:
 
-        text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
-            chunk_overlap=100,
+            logger.warning(
+                f"No documents loaded from {source}"
+            )
+
+            return []
+
+
+        logger.info(
+            f"Loaded {len(docs)} document(s) from {source_type.upper()} source."
+        )
+
+
+        # Metadata enrichment happens here
+        # because docs exists at this point
+
+        for doc in docs:
+
+            doc.metadata["source_type"] = source_type
+
+            doc.metadata["source"] = source
+
+            doc.metadata["ingested_at"] = (
+                datetime.now(UTC).isoformat()
+            )
+
+            if not doc.metadata.get("filename"):
+
+                doc.metadata["filename"] = (
+                    _get_filename(source)
+                )
+
+
+        splitter = RecursiveCharacterTextSplitter(
+
+            chunk_size=CHUNK_SIZE,
+
+            chunk_overlap=CHUNK_OVERLAP,
+
             separators=[
                 "\n\n",
                 "\n",
@@ -84,20 +164,21 @@ def process_document(source: str, is_web: bool = False):
         )
 
 
-        chunks = text_splitter.split_documents(docs)
+        chunks = splitter.split_documents(docs)
 
 
         logger.info(
-            f"✅ Processed {len(docs)} documents into {len(chunks)} chunks."
+            f"Created {len(chunks)} chunks from {len(docs)} document(s)."
         )
+
 
         return chunks
 
 
     except Exception as e:
 
-        logger.error(
-            f"🚨 Ingestion Failure for {source}: {e}"
+        logger.exception(
+            f"Ingestion failed for '{source}': {e}"
         )
 
         return []
@@ -105,19 +186,25 @@ def process_document(source: str, is_web: bool = False):
 
 if __name__ == "__main__":
 
-    url = "https://python.langchain.com/docs/introduction/"
-
-    chunks = process_document(
-        url,
-        is_web=True
+    source = (
+        "https://python.langchain.com/docs/introduction/"
     )
 
 
+    chunks = ingest_source(source)
+
+
     if chunks:
-        print(
-            "First Chunk Preview:"
-        )
+
+        print("\nFirst Chunk\n")
 
         print(
             chunks[0].page_content[:500]
+        )
+
+
+        print("\nMetadata\n")
+
+        print(
+            chunks[0].metadata
         )

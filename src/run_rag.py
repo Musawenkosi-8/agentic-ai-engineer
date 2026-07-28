@@ -1,24 +1,29 @@
-from src.ingestor import process_document
+from src.ingestor import ingest_source
 from src.vector_store import add_to_memory
 from src.rag_engine import smart_rag
 
 import os
 
 
-PDF_PATH = "data/agentic_ai.pdf"
+SOURCE = "data/agentic_ai.pdf"
 
 
-def index_document(pdf_path: str):
+def index_document(source: str):
 
     print("=" * 60)
     print("📄 Loading document...")
     print("=" * 60)
 
-    chunks = process_document(pdf_path)
+
+    chunks = ingest_source(source)
 
 
     if not chunks:
-        print("❌ No chunks created.")
+
+        print(
+            "❌ No chunks created."
+        )
+
         return False
 
 
@@ -27,18 +32,28 @@ def index_document(pdf_path: str):
     )
 
 
-    print("\n🧠 Adding chunks to ChromaDB memory...")
+    print(
+        "\n🧠 Adding chunks to ChromaDB memory..."
+    )
 
 
     for index, chunk in enumerate(chunks):
 
+        metadata = chunk.metadata.copy()
+
+        metadata["chunk"] = index
+
+
         add_to_memory(
+
             text=chunk.page_content,
-            doc_id=f"{os.path.basename(pdf_path)}_{index}",
-            metadata={
-                "source": pdf_path,
-                "chunk": index
-            },
+
+            doc_id=(
+                f"{os.path.basename(source)}_{index}"
+            ),
+
+            metadata=metadata,
+
             priority="Medium"
         )
 
@@ -47,6 +62,7 @@ def index_document(pdf_path: str):
         "✅ Document indexed successfully."
     )
 
+
     return True
 
 
@@ -54,11 +70,12 @@ def index_document(pdf_path: str):
 def main():
 
     success = index_document(
-        PDF_PATH
+        SOURCE
     )
 
 
     if not success:
+
         return
 
 
@@ -75,6 +92,7 @@ def main():
 
 
         if question.lower() == "exit":
+
             break
 
 
@@ -92,4 +110,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
