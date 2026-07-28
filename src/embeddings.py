@@ -1,7 +1,8 @@
 from sentence_transformers import SentenceTransformer, util
 from src.logger import logger
 
-model = SentenceTransformer('all-MiniLM-L6v2')
+model = SentenceTransformer('all-MiniLM-L6-v2')
+print("MiniLM model loaded successfully.")
 
 def get_similarity(text1: str, text2: str):
     """Calculate sementic similarity between two strings"""
