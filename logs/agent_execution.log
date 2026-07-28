@@ -674,3 +674,68 @@ Main Impacts of Deployed AI Engineer:
 2026-07-28 22:03:07,614 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
 2026-07-28 22:03:07,929 - httpx - INFO - _client.py:1025 - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
 2026-07-28 22:03:08,711 - AgenticResearcher - INFO - checkpointer.py:32 - ✅ LangGraph SQLite checkpointer initialized: checkpoints.db
+2026-07-28 22:17:29,826 - langchain_community.utils.user_agent - WARNING - user_agent.py:11 - USER_AGENT environment variable not set, consider setting it to identify your requests.
+2026-07-28 22:17:33,790 - sentence_transformers.base.model - INFO - model.py:190 - No device provided, using cpu
+2026-07-28 22:17:34,925 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:34,926 - huggingface_hub.utils._http - WARNING - _http.py:951 - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-28 22:17:34,972 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:35,284 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:35,330 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:35,333 - sentence_transformers.base.model - INFO - model.py:1001 - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+2026-07-28 22:17:35,647 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:35,693 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:36,016 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:36,071 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md "HTTP/1.1 200 OK"
+2026-07-28 22:17:36,413 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:36,463 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:36,816 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:36,865 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:37,208 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-28 22:17:37,515 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:37,556 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:40,845 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-28 22:17:41,156 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-28 22:17:41,457 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-28 22:17:41,760 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-28 22:17:42,096 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:42,145 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:42,454 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:42,623 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:42,938 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:42,983 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:43,298 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:43,340 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:43,689 - httpx - INFO - _client.py:1025 - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-28 22:17:44,003 - httpx - INFO - _client.py:1025 - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-28 22:17:44,655 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-28 22:17:44,704 - httpx - INFO - _client.py:1025 - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-28 22:17:45,042 - httpx - INFO - _client.py:1025 - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-07-28 22:17:50,874 - AgenticResearcher - INFO - checkpointer.py:32 - ✅ LangGraph SQLite checkpointer initialized: checkpoints.db
+2026-07-28 22:19:04,922 - AgenticResearcher - INFO - rag_graph.py:22 - 🧠 HyDE Node
+2026-07-28 22:19:04,923 - AgenticResearcher - INFO - rag_engine.py:100 - 🧠 Generating HyDE retrieval query...
+2026-07-28 22:19:06,428 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-28 22:19:06,544 - AgenticResearcher - INFO - rag_graph.py:39 - 📚 Retrieval Node
+2026-07-28 22:19:06,544 - AgenticResearcher - INFO - rag_engine.py:120 - 📚 Searching ChromaDB...
+2026-07-28 22:19:11,135 - AgenticResearcher - INFO - rag_graph.py:73 - 🧪 Context Grading Node
+2026-07-28 22:19:11,136 - AgenticResearcher - INFO - rag_engine.py:155 - 🧪 Evaluating retrieved context...
+2026-07-28 22:19:11,506 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-28 22:19:11,507 - AgenticResearcher - INFO - rag_engine.py:175 - Context grade: NO
+2026-07-28 22:19:11,508 - AgenticResearcher - INFO - rag_graph.py:104 - 🔄 Corrective Retrieval Node
+2026-07-28 22:19:11,509 - AgenticResearcher - WARNING - rag_engine.py:216 - 🔄 Starting Corrective RAG retrieval...
+2026-07-28 22:19:11,509 - AgenticResearcher - INFO - rag_engine.py:120 - 📚 Searching ChromaDB...
+2026-07-28 22:19:11,616 - AgenticResearcher - INFO - rag_engine.py:155 - 🧪 Evaluating retrieved context...
+2026-07-28 22:19:12,014 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-28 22:19:12,015 - AgenticResearcher - INFO - rag_engine.py:175 - Context grade: NO
+2026-07-28 22:19:12,017 - AgenticResearcher - WARNING - rag_graph.py:171 - 🚨 Fallback Node
+2026-07-28 22:19:35,921 - AgenticResearcher - INFO - rag_graph.py:22 - 🧠 HyDE Node
+2026-07-28 22:19:35,922 - AgenticResearcher - INFO - rag_engine.py:100 - 🧠 Generating HyDE retrieval query...
+2026-07-28 22:19:36,878 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-28 22:19:36,880 - AgenticResearcher - INFO - rag_graph.py:39 - 📚 Retrieval Node
+2026-07-28 22:19:36,880 - AgenticResearcher - INFO - rag_engine.py:120 - 📚 Searching ChromaDB...
+2026-07-28 22:19:37,325 - AgenticResearcher - INFO - rag_graph.py:73 - 🧪 Context Grading Node
+2026-07-28 22:19:37,326 - AgenticResearcher - INFO - rag_engine.py:155 - 🧪 Evaluating retrieved context...
+2026-07-28 22:19:37,703 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-28 22:19:37,704 - AgenticResearcher - INFO - rag_engine.py:175 - Context grade: YES
+2026-07-28 22:19:37,706 - AgenticResearcher - INFO - rag_graph.py:148 - ✍️ Answer Generation Node
+2026-07-28 22:19:37,706 - AgenticResearcher - INFO - rag_engine.py:193 - ✍️ Generating final answer...
+2026-07-28 22:19:38,103 - httpx - INFO - _client.py:1025 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
