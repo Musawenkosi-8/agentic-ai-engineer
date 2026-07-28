@@ -7,29 +7,28 @@ The checkpointer automatically persists the graph state after
 each node execution, enabling durable conversations that can
 survive application restarts.
 """
+import sqlite3
 
 from langgraph.checkpoint.sqlite import SqliteSaver
-
 from src.logger import logger
 
 
-CHECKPOINT_DB = "checkpoints.db"
+DB_PATH = "checkpoints.db"
 
 
-try:
+# Create persistent SQLite connection
+conn = sqlite3.connect(
+    DB_PATH,
+    check_same_thread=False
+)
 
-    checkpointer = SqliteSaver.from_conn_string(
-        CHECKPOINT_DB
-    )
 
-    logger.info(
-        f"✅ LangGraph checkpointer initialized: {CHECKPOINT_DB}"
-    )
+# Create actual LangGraph checkpoint saver
+checkpointer = SqliteSaver(
+    conn
+)
 
-except Exception as e:
 
-    logger.exception(
-        f"❌ Failed to initialize LangGraph checkpointer: {e}"
-    )
-
-    raise
+logger.info(
+    "✅ LangGraph SQLite checkpointer initialized: checkpoints.db"
+)
