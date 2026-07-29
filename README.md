@@ -436,6 +436,27 @@ The ingestion pipeline follows a failure-resistant approach:
 
 This ensures the agent can continue operating even when individual knowledge sources fail.
 
+## Tool Inventory
+
+### Tavily Search Tool
+Purpose:
+- Performs web research.
+
+Constraints:
+- Requires TAVILY_API_KEY.
+- Returns structured search results.
+
+### Safe File Manager Tool
+
+Purpose:
+- Saves research notes.
+
+Security:
+- Writes only inside output/
+- Removes unsafe paths using os.path.basename()
+- Validates filenames using Pydantic
+- Returns errors to the agent for self-correction
+
 
 Author
 Musawenkosi Nyawo
