@@ -457,6 +457,182 @@ Security:
 - Validates filenames using Pydantic
 - Returns errors to the agent for self-correction
 
+## Database Integration
+
+### Overview
+
+This project includes an AI-powered SQL database agent that allows users to interact with a company database using natural language queries.
+
+The agent uses a ReAct-based reasoning workflow where the LLM can inspect database structure, generate SQL queries, execute read operations, and return human-readable answers.
+
+Architecture:
+User Question
+|
+v
+LangChain Agent
+|
+v
+SQLDatabase Toolkit
+|
++---- List Tables
+|
++---- Inspect Schema
+|
++---- Execute SQL Query
+|
+v
+SQLite Database
+
+
+---
+
+## SQL Agent Workflow
+
+The database agent follows a controlled workflow:
+
+1. **Schema Discovery**
+   - The agent first discovers available tables.
+   - It inspects relevant table schemas before generating SQL.
+
+2. **Query Generation**
+   - The LLM converts natural language questions into SQL queries.
+   - Queries are generated based on the actual database schema.
+
+3. **Query Execution**
+   - SQL queries are executed through LangChain's SQL Database Toolkit.
+   - Results are returned and converted into natural language responses.
+
+Example:
+User:
+"List employees in the Engineering department."
+
+Agent:
+
+Inspect available tables
+Check employees and departments schemas
+Generate JOIN query
+Execute query
+Return employee names
+
+
+---
+
+# Database Safety Measures
+
+Security and reliability are critical when allowing an AI agent to interact with databases.
+
+The following safety measures have been implemented:
+
+## 1. Read-Only Database Operations
+
+The SQL agent is restricted to read-only operations.
+
+Allowed operations:
+
+- SELECT queries
+- Table discovery
+- Schema inspection
+- Data retrieval
+
+Restricted operations:
+
+- INSERT
+- UPDATE
+- DELETE
+- DROP TABLE
+- ALTER TABLE
+- CREATE TABLE
+
+The agent system instructions explicitly prevent destructive database operations.
+
+Example:
+User:
+"Delete the employees table."
+
+Agent:
+"I cannot perform destructive database operations.
+I can only execute read-only queries."
+
+
+---
+
+## 2. Controlled Tool Access
+
+The LLM does not directly access the database.
+
+Instead, it interacts through controlled SQL tools provided by:
+
+- LangChain SQLDatabaseToolkit
+- SQLDatabase tools
+
+This creates an abstraction layer between the AI model and the database.
+LLM
+|
+v
+SQL Tools
+|
+v
+Database
+
+
+---
+
+## 3. Schema Validation Before Query Execution
+
+Before generating SQL queries, the agent:
+
+1. Lists available tables.
+2. Retrieves table schemas.
+3. Identifies relevant columns.
+4. Generates SQL based on verified database structure.
+
+This reduces hallucinated table names and invalid SQL generation.
+
+---
+
+## 4. Database-Level Security
+
+For production deployments, the database should use a dedicated read-only database user.
+
+Example:
+AI Agent
+|
+v
+Read-Only Database Account
+|
+v
+Production Database
+
+
+Even if the agent attempts a destructive operation, database permissions prevent execution.
+
+---
+
+## 5. Error Handling and Logging
+
+Database interactions are monitored through application logging.
+
+The system records:
+
+- User database questions
+- Agent execution failures
+- Tool errors
+- API failures
+
+Errors are captured without exposing sensitive database information.
+
+---
+
+## Technologies Used
+
+- LangChain Agents
+- LangGraph Runtime
+- LangChain SQLDatabaseToolkit
+- Groq LLM API
+- SQLite Database
+- Python Logging
+
+
 
 Author
 Musawenkosi Nyawo
